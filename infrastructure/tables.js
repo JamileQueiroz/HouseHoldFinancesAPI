@@ -4,6 +4,7 @@ class tables {
 
         this.createTableRevenue()
         this.createTableExpense()
+
     }
 
     createTableRevenue() {
@@ -19,8 +20,8 @@ class tables {
     }
 
     createTableExpense() {
-        const sql = 'CREATE TABLE IF NOT EXISTS Expense (id int NOT NULL AUTO_INCREMENT, value decimal(7,2) NOT NULL, currency char(3) NOT NULL , date date NOT NULL, description text NOT NULL, PRIMARY KEY(id))'
-
+        const sql = 'CREATE TABLE IF NOT EXISTS Expense (id int NOT NULL AUTO_INCREMENT, value decimal(7,2) NOT NULL, currency char(3) NOT NULL , date date NOT NULL, category ENUM ("Food","Health","Home","Transport","Education","Leisure","Unforeseen","Others") DEFAULT "Others", description text NOT NULL, PRIMARY KEY(id))'
+           
         this.connection.query(sql, error => {
             if(error) {
                 console.log(error)
@@ -28,7 +29,8 @@ class tables {
                 console.log('table Expense was created!')
             }
         })
-    }
+    }       
+
 }
 
 
